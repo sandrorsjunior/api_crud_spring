@@ -18,6 +18,9 @@ public class AutorService {
     public Author save(Author newAuthor){
         return this.autorRepository.save(newAuthor);
     }
+    public void update(Author newAuthor){
+        this.autorRepository.save(newAuthor);
+    }
 
     public Optional<Author> findById(UUID id){
         return this.autorRepository.findById(id);

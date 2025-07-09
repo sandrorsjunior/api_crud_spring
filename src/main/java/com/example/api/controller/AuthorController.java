@@ -85,4 +85,22 @@ public class AuthorController {
         ).collect(Collectors.toList());
         return ResponseEntity.ok(authorDTOS);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable("id") String id, @RequestBody AuthorDTO authorUpdate){
+        Optional<Author> authorOldOP = this.autorService.findById(UUID.fromString(id));
+        if(authorOldOP.isPresent()){
+            Author authorOld = authorOldOP.get();
+
+            authorOld.setNome(authorUpdate.nome());
+            authorOld.setNacionalidade(authorUpdate.nacionalidade());
+            authorOld.setDataNascimento(authorUpdate.dataNascimento());
+
+            autorService.update(authorOld);
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 }
