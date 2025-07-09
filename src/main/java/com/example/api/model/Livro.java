@@ -24,7 +24,8 @@ public class Livro {
     @Enumerated(EnumType.STRING)
     private GeneroLivro genero;
     private BigDecimal preco;
-    private Autor autor;
+    @ManyToOne
+    private Author author;
     @CreatedDate
     private LocalDateTime dataCadastro;
     @LastModifiedDate
